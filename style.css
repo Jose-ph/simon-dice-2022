@@ -4,35 +4,59 @@
 
 }
 
-
-.rojo {
-
-    background-color: red;
-    height: 250px;
-    
-}
-
-.amarillo{
-    background-color: yellow;
-    height: 250px;
-    
-    
-}
-
-.azul{
-    background-color: blue;
-}
-
-.verde{
-
-    background-color: green;
-}
-
-
-
-
 body{
 
     background-color: cornflowerblue !important;
     
 }
+
+
+.red{
+
+    background-color: red;
+    height: 250px;
+    animation: fade 2s ;
+    opacity: 0.6;
+    
+}
+
+.yellow{
+    background-color: yellow;
+    height: 250px;
+
+    opacity: 0.6;
+
+    /* animation: fade 2s ; */
+    
+    
+    
+    
+}
+
+
+
+
+.blue{
+    background-color: blue;
+   /*  animation: fade 2s ; */
+    opacity: 0.6;
+}
+
+.green{
+
+    background-color: green;
+    /* animation: fade 2s ; */
+    opacity: 0.6;
+}
+
+
+
+@keyframes fade {
+
+    from {opacity: 0.3;}
+    to {opacity: 1;}
+
+}
+
+
+
