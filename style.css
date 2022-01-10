@@ -15,7 +15,7 @@ body{
 
     background-color: red;
     height: 250px;
-    animation: fade 2s ;
+    /* animation: fade 2s ; */
     opacity: 0.6;
     
 }
@@ -49,7 +49,11 @@ body{
     opacity: 0.6;
 }
 
+.addFade{
 
+    animation: fade 2s
+
+}
 
 @keyframes fade {
 
