@@ -6,7 +6,7 @@
 
 body{
 
-    background-color: cornflowerblue !important;
+    background-color: cornflowerblue;
     
 }
 
@@ -15,19 +15,18 @@ body{
 
     background-color: red;
     height: 250px;
-    /* animation: fade 2s ; */
-    opacity: 0.6;
+    opacity: 0.5;
+  
     
 }
 
 .yellow{
+
     background-color: yellow;
     height: 250px;
+    opacity: 0.5;
 
-    opacity: 0.6;
-
-    /* animation: fade 2s ; */
-    
+   
     
     
     
@@ -38,29 +37,17 @@ body{
 
 .blue{
     background-color: blue;
-   /*  animation: fade 2s ; */
-    opacity: 0.6;
+    opacity: 0.5;
+  
 }
 
 .green{
 
     background-color: green;
-    /* animation: fade 2s ; */
-    opacity: 0.6;
+    opacity: 0.5;
+   
 }
 
-.addFade{
-
-    animation: fade 2s
-
-}
-
-@keyframes fade {
-
-    from {opacity: 0.3;}
-    to {opacity: 1;}
-
-}
 
 
 

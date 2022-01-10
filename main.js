@@ -4,47 +4,81 @@ const $board = document.querySelector("#board");
 
 const $startButton = document.querySelector("#btn-start");
 
+    let machineColors = [];
+    let playerColors = [];
+
+
 
 $startButton.onclick = function (){
 
 
-    const $colours = document.querySelectorAll('.colour');
+const $colours = document.querySelectorAll('.colour');
+      
+   let randomColor = getRandomColour($colours);
+
+   machineColors.push(randomColor);
 
 
-    $colours.forEach((colour) => {
+    let timeBeforeNextHighlight = machineColors.length *1000
+    console.log(timeBeforeNextHighlight);
 
-        colour.onclick = function(e){
+ 
 
-            checkClickedButton(e);
-        }
-        
-    });
+    highlightColour(randomColor);
+
+
     
-
-
-
-
-
 
 
 
 }
 
+function getRandomColour(colours){
 
+    let randomIndex = Math.floor(Math.random()*(4) );
 
-
-function checkClickedButton(e){ //cambiarNombreDeLaFuncion
-
-
-    console.log(e.target);
-
-    e.target.classList.add("addFade");
     
-    setTimeout(() => {
 
-        e.target.classList.remove("addFade");
+     return colours[randomIndex]
+
+
+
+}
+
+function highlightColour (color){
+
+    color.style.opacity = 1;
+
+    setTimeout(() => {
+        color.style.opacity = 0.5;
         
-    }, 2000);
+    }, 500);
+
+
+    
+
+}
+
+
+   
+function highlightColourWithDelay(secuence){
+
+
+    let delay = secuence.length +1 * 1000;
+
+
+    for( let i = 0 ; i<secuence.length; i++){
+
+        setTimeout(() => {
+            highlightColour(secuence[i])
+            console.log("cambia color")
+
+        }, delay);
+        
+        delay+=1000
+
+    }
+
 
 
 }
