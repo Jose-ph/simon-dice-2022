@@ -16,11 +16,13 @@ $startButton.onclick = function (){
 
     handlePlayerTurn();
 
-    setTimeout(() => {
+   // setTimeout(() => {
 
-        compareColors(playerColors,machineColors)
+        
 
-        if( !compareColors(playerColors,machineColors)){
+       // console.log(compareColors(playerColors,machineColors));
+
+       /*  if( !compareColors(playerColors,machineColors)){
 
             alert("No hay coincidencia, tu pierdes!");
         }
@@ -28,9 +30,9 @@ $startButton.onclick = function (){
         else {
 
             alert("Hay coincidencia, sigue el juego !");
-        }
+        } */
         
-    }, 5000);
+        //   }, 10000);
     
 
 
@@ -49,12 +51,58 @@ function handlePlayerTurn(){
         color.onclick = function(event){
 
            let newPlayerColor =  getPlayerColor(event);
-            console.log(newPlayerColor);
-            playerColors.push(newPlayerColor);
-            highlightColour(newPlayerColor);
-            
 
-            
+            console.log(newPlayerColor);
+
+            playerColors.push(newPlayerColor);
+
+            highlightColour(newPlayerColor);
+
+            //comparar colores y luego eliminar el array con la jugada 
+
+            setTimeout(() => {
+
+                let match = compareColors(playerColors,machineColors);
+
+                if(match === true){
+
+                    handleMachineTurn()
+                    handlePlayerTurn();
+                    playerColors = []
+                }
+
+                if ( match === false){
+
+                    alert("perdiste!")
+                    playerColors= []
+                    machineColors = [];
+
+                    alert("toca el bot+on comenzar para volver a jugar")
+                }
+
+                
+               // compareColors(playerColors,machineColors)
+
+              /*   if(compareColors(playerColors,machineColors)){
+
+                    playerColors= []
+                    handleMachineTurn();
+                    handlePlayerTurn();
+
+                }
+
+                if(!compareColors(playerColors,machineColors)){
+
+
+                    alert("perdiste el juego!")
+                    playerColors = []
+                } */
+
+
+               
+                
+            }, 5000);
+           
         }
         
     });
@@ -70,7 +118,7 @@ function handleMachineTurn(){
       
      let randomColor = getRandomColour($colours);
 
-     
+     //bloquear al jugador
 
         machineColors.push(randomColor);
 
@@ -83,46 +131,7 @@ function handleMachineTurn(){
 
 }
 
-function compareColors (playerColors,machineColors){
 
-    //la omparación debe ser posición por posicin
-    let match= false
-
-
-    machineColors.forEach((color,i) => {
-
-        if( color === playerColors[i]){
-
-            match = true;
-        }
-        
-        else { match= false}
-    });
-
-/*     for(let i = 0 ; i <machineColors.length; i++){
-
-       if( machineColors.find(color => color === playerColors[i])){
-
-            match = true;
-
-       }
-        
-       else {
-
-            match = false
-       }
-       
-
-       console.log(match);
-
-    } */
-
-
-    return match;
-
-
-
-}
 
 function getPlayerColor(e){
 
@@ -144,6 +153,8 @@ function getRandomColour(colours){
 
 
 }
+
+
 
 function highlightColour (color){
 
@@ -182,3 +193,87 @@ function highlightColourWithDelay(secuence){
 
 
 }
+   
+function compareColors(playerColors,machineColors){
+
+    let match;
+
+
+    for(let i= 0 ; i < playerColors.length; i++){
+
+        if(playerColors[i].id === machineColors[i].id){
+
+            match = true;
+
+        }
+
+
+        else if(playerColors[i].id !== machineColors[i].id ){
+
+            match = false;
+            break;
+
+        }
+
+
+    }
+
+
+    return match
+
+}
+
+   
+/* function compareColors(userColors,machineColors){
+
+    if(userColors.length != 0){
+
+    for(let i=0 ; i<userColors.length; i++){
+
+
+        if(userColors[i].id === machineColors[i].id){
+
+            return true;
+        }
+
+        else if(userColors[i].id !== machineColors[i].id){
+
+            return false;
+            break;
+        }
+
+        
+       
+    }
+
+    }
+
+    else return 'empty parameter'
+
+} */
+
+/* 
+function compareColors (playerColors,machineColors){
+
+    //la comparación debe ser posición por posicion
+    let matches = false
+
+  machineColors.forEach((color,i) => {
+
+        if( color === playerColors[i]){
+
+            matches = true;
+        }
+        
+      
+    });
+
+
+
+
+    //return match;
+
+ 
+
+    return matches;
+} */
