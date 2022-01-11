@@ -6,31 +6,131 @@ const $startButton = document.querySelector("#btn-start");
 
     let machineColors = [];
     let playerColors = [];
-
+    let machineTurn = true;
 
 
 $startButton.onclick = function (){
 
 
-const $colours = document.querySelectorAll('.colour');
-      
-   let randomColor = getRandomColour($colours);
+    handleMachineTurn();
 
-   machineColors.push(randomColor);
+    handlePlayerTurn();
 
+    setTimeout(() => {
 
-    let timeBeforeNextHighlight = machineColors.length *1000
-    console.log(timeBeforeNextHighlight);
+        compareColors(playerColors,machineColors)
 
- 
+        if( !compareColors(playerColors,machineColors)){
 
-    highlightColour(randomColor);
+            alert("No hay coincidencia, tu pierdes!");
+        }
 
+        else {
 
+            alert("Hay coincidencia, sigue el juego !");
+        }
+        
+    }, 5000);
     
 
 
 
+}
+
+
+function handlePlayerTurn(){
+
+    const $colours = document.querySelectorAll('.colour');
+
+    let arrayOfColours = Array.from($colours)
+
+    arrayOfColours.forEach((color) => {
+
+        color.onclick = function(event){
+
+           let newPlayerColor =  getPlayerColor(event);
+            console.log(newPlayerColor);
+            playerColors.push(newPlayerColor);
+            highlightColour(newPlayerColor);
+            
+
+            
+        }
+        
+    });
+   
+
+
+}
+
+
+function handleMachineTurn(){
+
+    const $colours = document.querySelectorAll('.colour');
+      
+     let randomColor = getRandomColour($colours);
+
+     
+
+        machineColors.push(randomColor);
+
+        highlightColourWithDelay(machineColors);
+
+        machineTurn= false;
+
+
+
+
+}
+
+function compareColors (playerColors,machineColors){
+
+    //la omparación debe ser posición por posicin
+    let match= false
+
+
+    machineColors.forEach((color,i) => {
+
+        if( color === playerColors[i]){
+
+            match = true;
+        }
+        
+        else { match= false}
+    });
+
+/*     for(let i = 0 ; i <machineColors.length; i++){
+
+       if( machineColors.find(color => color === playerColors[i])){
+
+            match = true;
+
+       }
+        
+       else {
+
+            match = false
+       }
+       
+
+       console.log(match);
+
+    } */
+
+
+    return match;
+
+
+
+}
+
+function getPlayerColor(e){
+
+    
+
+    let playerColor= e.target
+
+    return playerColor;
 }
 
 function getRandomColour(colours){
