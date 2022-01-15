@@ -6,7 +6,7 @@ const $startButton = document.querySelector("#btn-start");
 
 const $gameState = document.querySelector("#state-heading");
 
-$gameState.textContent = "Toca Comenzar para Jugar!!"
+$gameState.textContent = "Repite la secuencia, toca Comenzar para jugar!!"
 
 
 let machineColors = [];
@@ -14,7 +14,7 @@ let playerColors = [];
 
 $startButton.onclick = function () {
 
-  $gameState.textContent = "Repite la secuencia!"
+  $gameState.textContent = "Turno de la máquina!!"
 
   handleRound();
 };
@@ -30,7 +30,7 @@ function handleRound() {
   
 
   setTimeout(() => {
-    console.log("podes jugar!");
+    $gameState.textContent = "Es tu turno!"
 
     unlockPlayerClick();
   }, playerDelay);
@@ -72,21 +72,26 @@ function handlePlayerTurn(e) {
   
 
   if (machineColors.length === playerColors.length && match) {
+    $gameState.textContent = "Turno de la máquina!!"
     playerColors = [];
     handleRound();
   }
 
   if (match === false) {
 
-    $gameState.textContent = "Perdiste, toca Comenzar para volver a Jugar!"
-    lockPlayerClick()
-    playerColors = [];
-    machineColors = [];
-    alert("perdiste");
+    gameOver();
+    
   }
 }
 
+function gameOver(){
 
+  $gameState.textContent = "Perdiste, toca Comenzar para volver a Jugar!"
+    lockPlayerClick()
+    playerColors = [];
+    machineColors = [];
+
+}
 
 function checkPlayerSelection(selection) {
 
