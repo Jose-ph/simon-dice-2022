@@ -1,36 +1,29 @@
-
-
 const $board = document.querySelector("#board");
 
 const $startButton = document.querySelector("#btn-start");
 
 const $gameState = document.querySelector("#state-heading");
 
-$gameState.textContent = "Repite la secuencia, toca Comenzar para jugar!!"
-
+$gameState.textContent = "Repite la secuencia, toca Comenzar para jugar!!";
 
 let machineColors = [];
 let playerColors = [];
 
 $startButton.onclick = function () {
-
-  $gameState.textContent = "Turno de la máquina!!"
+  $gameState.textContent = "Turno de la máquina!!";
 
   handleRound();
 };
 
 function handleRound() {
-
   lockPlayerClick();
 
   handleMachineTurn();
 
- 
-  let playerDelay =  highlightColourWithDelay(machineColors) + 1000;
-  
+  let playerDelay = highlightColourWithDelay(machineColors) + 1000;
 
   setTimeout(() => {
-    $gameState.textContent = "Es tu turno!"
+    $gameState.textContent = "Es tu turno!";
 
     unlockPlayerClick();
   }, playerDelay);
@@ -54,9 +47,7 @@ function lockPlayerClick() {
   let arrayOfColours = Array.from($colours);
 
   arrayOfColours.forEach((color) => {
-    color.onclick = function () {
-      console.log("aun no es tu turno");
-    };
+    color.onclick = function () {};
   });
 }
 
@@ -66,42 +57,34 @@ function handlePlayerTurn(e) {
   playerColors.push(newPlayerColor);
 
   highlightColour(newPlayerColor);
-  console.log(playerColors);
 
   let match = checkPlayerSelection(newPlayerColor);
-  
 
   if (machineColors.length === playerColors.length && match) {
-    $gameState.textContent = "Turno de la máquina!!"
+    $gameState.textContent = "Turno de la máquina!!";
     playerColors = [];
     handleRound();
   }
 
   if (match === false) {
-
     gameOver();
-    
   }
 }
 
-function gameOver(){
-
-  $gameState.textContent = "Perdiste, toca Comenzar para volver a Jugar!"
-    lockPlayerClick()
-    playerColors = [];
-    machineColors = [];
-
+function gameOver() {
+  $gameState.textContent = "Perdiste, toca Comenzar para volver a Jugar!";
+  lockPlayerClick();
+  playerColors = [];
+  machineColors = [];
 }
 
 function checkPlayerSelection(selection) {
+  let match = true;
 
-    let match = true;
-
-    /* Cuando playerColors.length por ejemplo sea 1 verificará el elemento que esté en 
+  /* Cuando playerColors.length por ejemplo sea 1 verificará el elemento que esté en 
     la posicio+on [0] en machineColors */
 
-    if (machineColors[playerColors.length - 1].id !== selection.id) match = false;
-
+  if (machineColors[playerColors.length - 1].id !== selection.id) match = false;
 
   return match;
 }
@@ -131,24 +114,15 @@ function highlightColour(color) {
 }
 
 function highlightColourWithDelay(secuence) {
-
-  let delay = (secuence.length) * 1000;
+  let delay = secuence.length * 1000;
 
   for (let i = 0; i < secuence.length; i++) {
     setTimeout(() => {
       highlightColour(secuence[i]);
-      console.log("cambia color");
-
-      console.log("Delay colores:",delay);
     }, delay);
 
-     delay += 1000; 
-
-     
-    
+    delay += 1000;
   }
 
-  return delay
+  return delay;
 }
-
-
