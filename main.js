@@ -25,9 +25,8 @@ function handleRound() {
 
   handleMachineTurn();
 
-  highlightColourWithDelay(machineColors);
-
-  let playerDelay = (machineColors.length + 1) * 1000;
+ 
+  let playerDelay =  highlightColourWithDelay(machineColors) + 1000;
   
 
   setTimeout(() => {
@@ -139,10 +138,12 @@ function highlightColourWithDelay(secuence) {
     }, delay);
 
      delay += 1000; 
+
+     
     
   }
 
-  
+  return delay
 }
 
 
