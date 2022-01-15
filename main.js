@@ -17,11 +17,14 @@ $startButton.onclick = function () {
 };
 
 function handleRound() {
+
   lockPlayerClick();
 
   handleMachineTurn();
 
-  let playerDelay = highlightColourWithDelay(machineColors) + 1000;
+ // let playerDelay = highlightColourWithDelay(machineColors) + 1000;
+
+  let playerDelay = (machineColors.length +1) *1000;
 
   setTimeout(() => {
     $gameState.textContent = "Es tu turno!";
@@ -97,6 +100,19 @@ function handleMachineTurn() {
   let randomColor = getRandomColour($colours);
 
   machineColors.push(randomColor);
+ 
+    
+   machineColors.forEach((color,index) => {
+
+    let delay = (index+1)*1000;
+
+    setTimeout(() => {
+      highlightColour(color);
+    }, delay);
+     
+   });
+ 
+  //highlightColour(randomColor);
 
   return machineColors;
 }
@@ -116,7 +132,10 @@ function highlightColour(color) {
 }
 
 function highlightColourWithDelay(secuence) {
-  let delay = secuence.length * 1000;
+
+
+
+   let delay = secuence.length * 1000;
 
   for (let i = 0; i < secuence.length; i++) {
     setTimeout(() => {
@@ -126,5 +145,5 @@ function highlightColourWithDelay(secuence) {
     delay += 1000;
   }
 
-  return delay;
+  return delay; 
 }
