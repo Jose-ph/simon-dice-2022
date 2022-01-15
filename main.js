@@ -4,13 +4,19 @@ const $board = document.querySelector("#board");
 
 const $startButton = document.querySelector("#btn-start");
 
+const $gameState = document.querySelector("#state-heading");
+
+$gameState.textContent = "Toca Comenzar para Jugar!!"
+
+
 let machineColors = [];
 let playerColors = [];
 
 $startButton.onclick = function () {
-  let machineTurn = true;
 
-  handleRound(machineColors, playerColors, machineTurn);
+  $gameState.textContent = "Repite la secuencia!"
+
+  handleRound();
 };
 
 function handleRound() {
@@ -22,6 +28,7 @@ function handleRound() {
   highlightColourWithDelay(machineColors);
 
   let playerDelay = (machineColors.length + 1) * 1000;
+  
 
   setTimeout(() => {
     console.log("podes jugar!");
@@ -63,6 +70,7 @@ function handlePlayerTurn(e) {
   console.log(playerColors);
 
   let match = checkPlayerSelection(newPlayerColor);
+  
 
   if (machineColors.length === playerColors.length && match) {
     playerColors = [];
@@ -70,24 +78,31 @@ function handlePlayerTurn(e) {
   }
 
   if (match === false) {
+
+    $gameState.textContent = "Perdiste, toca Comenzar para volver a Jugar!"
+    lockPlayerClick()
     playerColors = [];
     machineColors = [];
     alert("perdiste");
   }
 }
 
-function checkPlayerSelection(selection) {
-  let match = true;
 
-  for (let i = 0; i < machineColors.length; i++) {
-    if (machineColors[playerColors.length - 1] !== selection) match = false;
-    break;
-  }
+
+function checkPlayerSelection(selection) {
+
+    let match = true;
+
+    /* Cuando playerColors.length por ejemplo sea 1 verificará el elemento que esté en 
+    la posicio+on [0] en machineColors */
+
+    if (machineColors[playerColors.length - 1].id !== selection.id) match = false;
+
 
   return match;
 }
 
-function handleMachineTurn(machineTurn) {
+function handleMachineTurn() {
   const $colours = document.querySelectorAll(".colour");
 
   let randomColor = getRandomColour($colours);
@@ -112,18 +127,22 @@ function highlightColour(color) {
 }
 
 function highlightColourWithDelay(secuence) {
-  let delay = secuence.length * 1000;
+
+  let delay = (secuence.length) * 1000;
 
   for (let i = 0; i < secuence.length; i++) {
     setTimeout(() => {
       highlightColour(secuence[i]);
       console.log("cambia color");
 
-      console.log(delay);
+      console.log("Delay colores:",delay);
     }, delay);
 
-    delay += 1000;
+     delay += 1000; 
+    
   }
+
+  
 }
 
 
