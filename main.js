@@ -11,6 +11,7 @@ let playerColors = [];
 
 $startButton.onclick = function () {
   $gameState.textContent = "Turno de la máquina!!";
+  $startButton.disabled = true;
 
   handleRound();
 };
@@ -73,6 +74,7 @@ function handlePlayerTurn(e) {
 
 function gameOver() {
   $gameState.textContent = "Perdiste, toca Comenzar para volver a Jugar!";
+  $startButton.disabled = false;
   lockPlayerClick();
   playerColors = [];
   machineColors = [];
