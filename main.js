@@ -22,7 +22,7 @@ function handleRound() {
 
   handleMachineTurn();
 
- // let playerDelay = highlightColourWithDelay(machineColors) + 1000;
+ 
 
   let playerDelay = (machineColors.length +1) *1000;
 
@@ -102,15 +102,7 @@ function handleMachineTurn() {
   machineColors.push(randomColor);
  
     
-   machineColors.forEach((color,index) => {
-
-    let delay = (index+1)*1000;
-
-    setTimeout(() => {
-      highlightColour(color);
-    }, delay);
-     
-   });
+   highlightColourWithDelay();
  
   //highlightColour(randomColor);
 
@@ -135,15 +127,14 @@ function highlightColourWithDelay(secuence) {
 
 
 
-   let delay = secuence.length * 1000;
+  machineColors.forEach((color,index) => {
 
-  for (let i = 0; i < secuence.length; i++) {
+    let delay = (index+1)*1000;
+
     setTimeout(() => {
-      highlightColour(secuence[i]);
+      highlightColour(color);
     }, delay);
+     
+   });
 
-    delay += 1000;
   }
-
-  return delay; 
-}
