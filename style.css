@@ -1,0 +1,55 @@
+*{
+
+    background-color: black;
+
+}
+
+body{
+
+    background-color: black;
+    
+}
+
+
+.red{
+
+    background-color: red;
+    height: 250px;
+    opacity: 0.5;
+  
+    
+}
+
+.yellow{
+
+    background-color: yellow;
+    height: 250px;
+    opacity: 0.5;
+
+   
+    
+    
+    
+}
+
+
+
+
+.blue{
+    background-color: blue;
+    opacity: 0.5;
+    height: 250px;
+  
+}
+
+.green{
+
+    background-color: green;
+    opacity: 0.5;
+    height: 250px;
+   
+}
+
+
+
+
